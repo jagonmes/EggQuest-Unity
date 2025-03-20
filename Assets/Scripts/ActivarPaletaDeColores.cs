@@ -10,9 +10,4 @@ public class ActivarPaletaDeColores : MonoBehaviour
         materials[0] = _material;
         _meshRenderer.materials = materials;
     }
-    void Update()
-    {
-        Debug.Log("RG16 " + SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.RG16));
-        Debug.Log("ARGB32 " + SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGB32));
-    }
 }

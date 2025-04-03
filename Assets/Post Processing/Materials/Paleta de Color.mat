@@ -86,15 +86,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Paleta_de_Colores_Enemigos:
-        m_Texture: {fileID: 2800000, guid: c38c6e4607d45ec44b169db6f667030e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1651d9bdaf11af845b741663b17615a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Paleta_de_Colores_ForeGround:
-        m_Texture: {fileID: 2800000, guid: 9a1c3522138f8ef42ab0b4d94a0289b5, type: 3}
+        m_Texture: {fileID: 2800000, guid: d13d60cddc0181243ace1beb7fa79fb6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Paleta_de_Colores_Interfaz:
-        m_Texture: {fileID: 2800000, guid: d13d60cddc0181243ace1beb7fa79fb6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a1c3522138f8ef42ab0b4d94a0289b5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Paleta_de_Colores_Jugador:
@@ -102,7 +102,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Paleta_de_Colores_Plataformas:
-        m_Texture: {fileID: 2800000, guid: 1651d9bdaf11af845b741663b17615a0, type: 3}
+        m_Texture: {fileID: 2800000, guid: c38c6e4607d45ec44b169db6f667030e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:

@@ -10,15 +10,15 @@ public class EnableRenderFeatures : MonoBehaviour
 
     [SerializeField]private List<FullScreenPassRendererFeature> renderFeatures = new List<FullScreenPassRendererFeature>();
     [SerializeField]private UniversalRendererData rendererData;
-    [SerializeField]private Camera ThisCamera;
-    [SerializeField]private List<bool> enabledFeatures = new List<bool>();
+    [SerializeField]private Camera thisCamera;
+    [SerializeField]public List<bool> enabledFeatures = new List<bool>();
 
     private void Awake()
     {
-        if (ThisCamera == null)
-            ThisCamera = this.gameObject.GetComponent<Camera>();
+        if (thisCamera == null)
+            thisCamera = this.gameObject.GetComponent<Camera>();
 
-        if (ThisCamera != null)
+        if (thisCamera != null)
         {
             if (rendererData != null)
             {
@@ -38,9 +38,9 @@ public class EnableRenderFeatures : MonoBehaviour
     {
         if (this.enabled)
         {
-            if (this.ThisCamera != null)
+            if (this.thisCamera != null)
             {
-                if(currentCamera.name == this.ThisCamera.name)
+                if(currentCamera.name == this.thisCamera.name)
                 {
                     for (int i = 0; i < renderFeatures.Count; i++)
                     {
@@ -54,7 +54,7 @@ public class EnableRenderFeatures : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (ThisCamera != null)
+        if (thisCamera != null)
         {
             if (rendererData != null)
             {

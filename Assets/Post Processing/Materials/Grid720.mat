@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grid
+  m_Name: Grid720
   m_Shader: {fileID: -6465566751694194690, guid: 79e6c4899ef5db24d9359f9004fa84c9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,6 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Activo: 1
     - _Modulo: 5
     m_Colors:
     - _BaseSize: {r: 800, g: 720, b: 0, a: 0}

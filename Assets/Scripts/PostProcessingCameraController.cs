@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Unity.Mathematics.Geometry;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 
 public class PostProcessingCameraController : MonoBehaviour
@@ -19,8 +21,12 @@ public class PostProcessingCameraController : MonoBehaviour
     private bool ActivarGhosting = false;
     
     [Header("GRID")]
-    [SerializeField]private Material Grid;
+    [SerializeField]private Material Grid720;
+    [SerializeField]private Material Grid1440;
+    [SerializeField]private UniversalRendererData rendererData;
+    private Material Grid;
     private bool ActivarGrid = false;
+    private FullScreenPassRendererFeature gridRenderFeature;
     
     //TEXTURA
     private int Width = 0;
@@ -34,13 +40,38 @@ public class PostProcessingCameraController : MonoBehaviour
 
         if (thisCamera != null)
         {
-            RenderPipelineManager.beginCameraRendering += ChangeTextureResolution;
+            RenderPipelineManager.beginCameraRendering += CameraResolutionChange;
         }
+        
+        if (rendererData != null)
+        {
+            foreach (var feature in rendererData.rendererFeatures)
+            {
+                if (feature is FullScreenPassRendererFeature fullScreenPassFeature)
+                {
+                    if (feature.name == "Grid")
+                    {
+                        gridRenderFeature = fullScreenPassFeature;
+                        break;
+                    }
+                }
+            }
+        }
+        //CARGAMOS EL MATERIAL DEL GRID
+        if(Grid720 != null)
+            Grid = Grid720;
+        else if(Grid1440 != null)
+            Grid = Grid1440;
+        else
+            Debug.LogError("No hay grid asignado");
+        
     }
 
     private void Start()
     {
         //TODO CARGAR AQUI LA CONFIGURACION PREVIA
+        ChangeTextureResolution();
+        
         LoadColorPallete();
         if (Ghosting != null)
         {
@@ -105,7 +136,7 @@ public class PostProcessingCameraController : MonoBehaviour
     }
     
     //FUNCIONES RENDER TEXTURE
-    void ChangeTextureResolution(ScriptableRenderContext context, Camera currentCamera)
+    void CameraResolutionChange(ScriptableRenderContext context, Camera currentCamera)
     {
         if (this.enabled)
         {
@@ -113,32 +144,56 @@ public class PostProcessingCameraController : MonoBehaviour
             {
                 if (this.Width != Screen.width || this.Height != Screen.height)
                 {
-                    RenderTexture texture = this.thisCamera.targetTexture;
-                    this.thisCamera.targetTexture = null;
-                    texture.Release();
-                    /*
-                    int multiplier = (int)Mathf.Max(Screen.height / 720, 1);
-                    int Height = 720 * multiplier;
-                    int Width = 800 * multiplier;
-                    */
-                    int multiplier = (int)Mathf.Max(Screen.height / 1440, 1);
-                    int Height = 1440 * multiplier;
-                    int Width = 1600 * multiplier;
-                    texture.width = Width;
-                    texture.height = Height;
-                    this.thisCamera.targetTexture = texture;
-                    this.Width = Screen.width;
-                    this.Height = Screen.height;
+                    ChangeTextureResolution();
                 }
             }
         }
     }
-    
+
+    private void ChangeTextureResolution()
+    {
+        RenderTexture texture = this.thisCamera.targetTexture;
+        this.thisCamera.targetTexture = null;
+        texture.Release();
+                    
+        int Height = 1440;
+        int Width = 1600;
+                    
+        if (Screen.height == 720)
+        {
+            Height = 720;
+            Width = 800;
+            if (gridRenderFeature != null && Grid720 != null)
+            {
+                gridRenderFeature.passMaterial = Grid720;
+                SetGrid();
+            }
+        }
+        else
+        {
+            int multiplier = (int)Mathf.Max(Mathf.Floor(Screen.height / 1440.0f), 1);
+            Height = 1440 * multiplier;
+            Width = 1600 * multiplier;
+            if (gridRenderFeature != null && Grid1440 != null)
+            {
+                gridRenderFeature.passMaterial = Grid1440;
+                SetGrid();
+            }
+        }
+
+                    
+        texture.width = Width;
+        texture.height = Height;
+        this.thisCamera.targetTexture = texture;
+        this.Width = Screen.width;
+        this.Height = Screen.height;
+    }
+
     private void OnDestroy()
     {
         if (thisCamera != null)
         {
-            RenderPipelineManager.beginCameraRendering -= ChangeTextureResolution;
+            RenderPipelineManager.beginCameraRendering -= CameraResolutionChange;
         }
     }
 }

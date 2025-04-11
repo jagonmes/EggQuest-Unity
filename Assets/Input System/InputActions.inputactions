@@ -1,0 +1,174 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Jugador",
+            "id": "9aa3fbf7-b19e-408d-84b7-94c1ef9117b7",
+            "actions": [
+                {
+                    "name": "BotonArriba",
+                    "type": "Button",
+                    "id": "b8ddbca3-0e5e-4e7e-b79f-ca43b948e9d0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonAbajo",
+                    "type": "Button",
+                    "id": "5fb46fc8-350c-4166-97fc-d1766a5fd1fb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonIzquierda",
+                    "type": "Button",
+                    "id": "172ceb47-906e-4889-a0e9-9ff65b84151d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonDerecha",
+                    "type": "Button",
+                    "id": "0d0b6b57-6699-4bfc-b42a-619238f516a9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonSaltar",
+                    "type": "Button",
+                    "id": "158822e0-1e1a-4cea-bdf3-55333027deb4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonAccion",
+                    "type": "Button",
+                    "id": "11df8bac-0985-4971-8e00-85cc1cfadc36",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonPausa",
+                    "type": "Button",
+                    "id": "345046cd-dae4-492e-87ee-90f1078ea1b5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BotonInventario",
+                    "type": "Button",
+                    "id": "04fa7441-bf57-4464-9be5-f192eaa2a188",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1ca97b27-0482-4475-bc57-401dbd3c11d6",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonArriba",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fdd210e-f488-47bf-b328-a219bb1b5c20",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAbajo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a51fb63-0a0a-4dcb-9933-88f43cd9c0b4",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonIzquierda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3244a508-1973-4c97-9da0-881b5f5d8caa",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonDerecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58c0c795-abfa-4c26-8707-37f72bdbb532",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonSaltar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5a4820e-3faf-43f5-a7d3-7bf473c3c2b9",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAccion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5f2fc6e-8418-4872-a027-d0623858a848",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonPausa",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39f072dc-bee4-42a9-9a40-57a7f194d7d5",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonInventario",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

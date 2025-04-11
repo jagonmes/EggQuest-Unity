@@ -28,12 +28,19 @@ public class ColorManager : MonoBehaviour
     }
     
     [SerializeField] private Sprite[] ColorSprites = null;
-    [SerializeField]private string[] ColorNames = null;
+    [SerializeField]public string[] ColorNames = null;
     public Dictionary<string, Sprite> ColorPallets = new Dictionary<string, Sprite>();
+    
+    [SerializeField]public string SelectedColorPreset = null;
+    [SerializeField]public string[] SelectedColors = null;
+    [SerializeField]public Dictionary<string, List<string>> ColorPresets = new Dictionary<string, List<string>>();
+    public bool GridActive = false;
+    public bool GhostingActive = false;
     
     void Awake()
     {
         LoadColorPallets();
+        CreateColorPresets();
     }
 
     private void LoadColorNames()
@@ -63,5 +70,24 @@ public class ColorManager : MonoBehaviour
                 Debug.LogWarning($"Color {ColorNames[i]} ya existe en el diccionario.");
             }
         }
+    }
+
+    private void CreateColorPresets()
+    {
+        foreach (var color in ColorNames)
+        {
+            string [] colors = {color, color, color, color, color, color};
+            if (!ColorPresets.ContainsKey(color))
+            {
+                ColorPresets.Add(color, new List<string>(colors));
+            }
+            else
+            {
+                Debug.LogWarning($"Preset {color} ya existe en el diccionario.");
+            }
+        }
+        //TODO: CARGAR EL PRESET PERSONALIZADO AQUI, TAMBIEN EL DE ALTO CONTRASTE
+        string [] aux = {"DMG", "LIGHT", "POCKET", "GREEN", "BROWN", "PASTEL"};
+        ColorPresets.Add("Personalizado", new List<string>(aux));
     }
 }

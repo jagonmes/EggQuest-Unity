@@ -13,19 +13,19 @@ public class PostProcessingCameraController : MonoBehaviour
     
     [Header("PALETA DE COLORES")]
     [SerializeField]private Material PaletaDeColores;
-    [SerializeField]public string[] Colors = {"DMG", "DMG", "DMG", "DMG","DMG", "DMG"};
     [SerializeField] private Sprite PaletaPorDefecto;
     
     [Header("GHOSTING")]
     [SerializeField]private Material Ghosting;
-    private bool ActivarGhosting = false;
-    
+
+    public bool ActivarGhosting { get; private set; } = false;
+
     [Header("GRID")]
     [SerializeField]private Material Grid720;
     [SerializeField]private Material Grid1440;
     [SerializeField]private UniversalRendererData rendererData;
     private Material Grid;
-    private bool ActivarGrid = false;
+    public bool ActivarGrid { get; private set; } = false;
     private FullScreenPassRendererFeature gridRenderFeature;
     
     //TEXTURA
@@ -65,14 +65,6 @@ public class PostProcessingCameraController : MonoBehaviour
         else
             Debug.LogError("No hay grid asignado");
         
-    }
-
-    private void Start()
-    {
-        //TODO CARGAR AQUI LA CONFIGURACION PREVIA
-        ChangeTextureResolution();
-        
-        LoadColorPallete();
         if (Ghosting != null)
         {
             ActivarGhosting = Ghosting.GetInt("_Activo") == 1;
@@ -83,6 +75,19 @@ public class PostProcessingCameraController : MonoBehaviour
             ActivarGrid = Grid.GetInt("_Activo") == 1;
             SetGrid();
         }
+        
+    }
+
+    private void Start()
+    {
+        //TODO CARGAR AQUI LA CONFIGURACION PREVIA
+        ChangeTextureResolution();
+        ColorManager.Instance.SelectedColors = ColorManager.Instance.ColorPresets[ColorManager.Instance.SelectedColorPreset].ToArray();
+        LoadColorPallete();
+        ActivarGrid = ColorManager.Instance.GridActive;
+        ActivarGhosting = ColorManager.Instance.GhostingActive;
+        SetGhosting();
+        SetGrid();
     }
 
     //FUNCIONES PALETA DE COLORES
@@ -90,11 +95,11 @@ public class PostProcessingCameraController : MonoBehaviour
     public void LoadColorPallete()
     {
         List<Sprite> sprites = new List<Sprite>();
-        for (int i = 0; i < Colors.Length; i++)
+        for (int i = 0; i < ColorManager.Instance.SelectedColors.Length; i++)
         {
             Sprite sprite = null;
-            if(ColorManager.Instance.ColorPallets.ContainsKey(Colors[i]))
-                sprite = ColorManager.Instance.ColorPallets[Colors[i]];
+            if(ColorManager.Instance.ColorPallets.ContainsKey(ColorManager.Instance.SelectedColors[i]))
+                sprite = ColorManager.Instance.ColorPallets[ColorManager.Instance.SelectedColors[i]];
             if(sprite == null)
                 sprite = PaletaPorDefecto;
             sprites.Add(sprite);
@@ -106,7 +111,7 @@ public class PostProcessingCameraController : MonoBehaviour
         PaletaDeColores.SetTexture("_Paleta_de_Colores_ForeGround", sprites[4].texture);
         PaletaDeColores.SetTexture("_Paleta_de_Colores_Interfaz", sprites[5].texture);
     }
-    
+
     //FUNCIONES GHOSTING
     [ContextMenu("Ghosting Toggle")]
     public void GhostingToggle()
@@ -166,6 +171,7 @@ public class PostProcessingCameraController : MonoBehaviour
             if (gridRenderFeature != null && Grid720 != null)
             {
                 gridRenderFeature.passMaterial = Grid720;
+                Grid = Grid720;
                 SetGrid();
             }
         }
@@ -177,6 +183,7 @@ public class PostProcessingCameraController : MonoBehaviour
             if (gridRenderFeature != null && Grid1440 != null)
             {
                 gridRenderFeature.passMaterial = Grid1440;
+                Grid = Grid1440;
                 SetGrid();
             }
         }

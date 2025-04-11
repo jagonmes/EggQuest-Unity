@@ -1,1 +1,0 @@
-D:\Unity\EggQuest\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\54551f94\obj\arm64-v8a

@@ -11,6 +11,7 @@ public class FontManager : MonoBehaviour
     private static FontManager _instance;
 
     [SerializeField] private Sprite[] fontSprites = null;
+    [SerializeField] private Sprite[] fontGraySprites = null;
     [SerializeField] private string listaDeCaracteres = "";
     public static FontManager Instance
     {
@@ -35,9 +36,12 @@ public class FontManager : MonoBehaviour
 
     //DICCCIONARIO QUE CONTIENE LOS CARACTERES Y SUS RESPECTIVOS SPRITES
     public Dictionary<string, Sprite> caracter { get;private set; } = new Dictionary<string, Sprite>();
+    public Dictionary<string, Sprite> caracterGris { get;private set; } = new Dictionary<string, Sprite>();
 
     private void Awake()
     {
+        if(FontManager.Instance != null && FontManager.Instance != this)
+            Destroy(this.gameObject);
         LoadFont();
     }
 
@@ -98,12 +102,13 @@ public class FontManager : MonoBehaviour
         //GENERA EL DICCIONARIO DE CARACTERES
         for (int i = 0; i < listaDeCaracteres.Length; i++)
         {
-            if(i >= fontSprites.Length)
+            if(i >= fontSprites.Length && i > fontSprites.Length)
             {
                 Debug.LogError("No hay suficientes sprites para la lista de caracteres.");
                 return;
             }
             caracter.Add(listaDeCaracteres[i].ToString(), fontSprites[i]);
+            caracterGris.Add(listaDeCaracteres[i].ToString(), fontGraySprites[i]);
         }
         
     }
@@ -113,13 +118,14 @@ public class FontManager : MonoBehaviour
     private void LoadFontAssets()
     {
         // CARGA TODAS LOS SPRITES DE LA FUENTE DE TEXTO
-        fontSprites = Resources.LoadAll<Sprite>("Fuente de texto/");
+        fontSprites = Resources.LoadAll<Sprite>("Fuente de texto/Fuente/");
+        fontGraySprites = Resources.LoadAll<Sprite>("Fuente de texto/Fuente-Gris/");
         // VERIFICA QUE HAY SPRITES
-        if (fontSprites != null)
+        if (fontSprites != null || fontGraySprites != null)
         {
-            if (fontSprites.Length == 0)
+            if (fontSprites.Length == 0 || fontGraySprites.Length == 0)
             {
-                Debug.LogError("No se pudieron cargar los sprites de la fuente de texto.");
+                Debug.LogError("No se encontraron sprites en la fuente de texto.");
                 return;
             }
         }

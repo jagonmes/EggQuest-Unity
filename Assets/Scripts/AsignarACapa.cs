@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class AsignarACapa : MonoBehaviour
 {
     public Material sprite2D_Profundidad;
+    public List<GameObject> Layers = new List<GameObject>();
 
     private void Awake()
     {
@@ -15,14 +17,14 @@ public class AsignarACapa : MonoBehaviour
     [ContextMenu("Asignar a capa de color")]
     public void AsignarACapaDeColor()
     {
-        foreach (var go in this.GetComponentsInChildren<Transform>())
+        foreach (var layer in this.Layers)
         {
-            SpriteRenderer[] spriteRenderers = go.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] spriteRenderers = layer.GetComponentsInChildren<SpriteRenderer>();
             foreach (var spriteRenderer in spriteRenderers)
             {
                 if(sprite2D_Profundidad != null)
                     spriteRenderer.sharedMaterial = sprite2D_Profundidad;
-                spriteRenderer.gameObject.layer = go.gameObject.layer;
+                spriteRenderer.gameObject.layer = layer.gameObject.layer;
                 spriteRenderer.gameObject.transform.localPosition = new Vector3(spriteRenderer.transform.localPosition.x, spriteRenderer.transform.localPosition.y, 0);
             }
         }

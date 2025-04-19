@@ -7,7 +7,7 @@ public class PaletaDeColor : Opcion
     private string selectedColorPreset;
     private int selectedColorPresetIndex;
     [SerializeField]private PostProcessingCameraController PPcameraController;
-    private Dictionary<string, List<string>> Presets = new Dictionary<string, List<string>>();
+    [SerializeField]private List<Opcion> opciones = new List<Opcion>();
     
     void Start()
     {
@@ -24,11 +24,12 @@ public class PaletaDeColor : Opcion
         ColorManager.Instance.SelectedColors = ColorManager.Instance.ColorPresets[selectedColorPreset].ToArray();
         ConfigManager.Instance.SavePrefs("ColorPreset", ColorManager.Instance.SelectedColorPreset);
         PPcameraController.LoadColorPallete();
+        activarPersonalizacion();
     }
     public override void Derecha()
     {
         selectedColorPresetIndex++;
-        if(selectedColorPresetIndex >= colores.Count)
+        if (selectedColorPresetIndex >= colores.Count)
             selectedColorPresetIndex = 0;
         selectedColorPreset = colores[selectedColorPresetIndex];
         string aux = "<" + selectedColorPreset + ">";
@@ -38,6 +39,9 @@ public class PaletaDeColor : Opcion
         ColorManager.Instance.SelectedColors = ColorManager.Instance.ColorPresets[selectedColorPreset].ToArray();
         ConfigManager.Instance.SavePrefs("ColorPreset", ColorManager.Instance.SelectedColorPreset);
         PPcameraController.LoadColorPallete();
+        if(optionSound != null)
+            optionSound.PlayEffect();
+        activarPersonalizacion();
     }
 
     public override void Izquierda()
@@ -53,7 +57,28 @@ public class PaletaDeColor : Opcion
         ColorManager.Instance.SelectedColors = ColorManager.Instance.ColorPresets[selectedColorPreset].ToArray();
         ConfigManager.Instance.SavePrefs("ColorPreset", ColorManager.Instance.SelectedColorPreset);
         PPcameraController.LoadColorPallete();
+        if(optionSound != null)
+            optionSound.PlayEffect();
+        activarPersonalizacion();
+    }
+
+    private void activarPersonalizacion()
+    {
+        if(ColorManager.Instance.SelectedColorPreset == "CUSTOM")
+            foreach (var opcion in opciones)
+            {
+                opcion.texto.activo = true;
+            }
+        else
+            foreach (var opcion in opciones)
+            {
+                opcion.texto.activo = false;
+            }
     }
     
-    
+    public override void Accion()
+    {
+    }
+
+
 }

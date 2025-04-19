@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Activo: 0
+    - _Activo: 1
     - _Modulo: 10
     m_Colors:
     - _BaseSize: {r: 1600, g: 1440, b: 0, a: 0}

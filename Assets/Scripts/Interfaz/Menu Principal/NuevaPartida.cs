@@ -5,7 +5,6 @@ public class NuevaPartida : Opcion
 {
     public override void Accion()
     {
-        base.Accion();
         SceneManager.LoadScene("SampleScene");
     }
 }

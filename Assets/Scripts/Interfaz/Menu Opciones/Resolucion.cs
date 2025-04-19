@@ -54,6 +54,8 @@ public class Resolucion : Opcion
         string aux2 = "Resolución:                         ";
         texto.texto = aux2.Remove(aux2.Length - aux.Length - 1) + aux;
         Screen.SetResolution(resoluciones[selectedResolution].ancho, resoluciones[selectedResolution].altura, Screen.fullScreen);
+        if(optionSound != null)
+            optionSound.PlayEffect();
     }
 
     public override void Izquierda()
@@ -65,6 +67,8 @@ public class Resolucion : Opcion
         string aux2 = "Resolución:                         ";
         texto.texto = aux2.Remove(aux2.Length - aux.Length - 1) + aux;
         Screen.SetResolution(resoluciones[selectedResolution].ancho, resoluciones[selectedResolution].altura, Screen.fullScreen);
+        if(optionSound != null)
+            optionSound.PlayEffect();
     }
 
     public class resolucion
@@ -77,5 +81,9 @@ public class Resolucion : Opcion
             this.altura = altura;
             this.ancho = ancho;
         }
+    }
+    
+    public override void Accion()
+    {
     }
 }

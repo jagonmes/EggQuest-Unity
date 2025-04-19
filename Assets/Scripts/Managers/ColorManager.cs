@@ -36,6 +36,7 @@ public class ColorManager : MonoBehaviour
     [SerializeField]public Dictionary<string, List<string>> ColorPresets = new Dictionary<string, List<string>>();
     public bool GridActive = false;
     public bool GhostingActive = false;
+    public List<string> customPresetColors = new List<string>(){"DMG", "LIGHT", "POCKET", "GREEN", "BROWN", "PASTEL"};
     
     void Awake()
     {
@@ -86,8 +87,7 @@ public class ColorManager : MonoBehaviour
                 Debug.LogWarning($"Preset {color} ya existe en el diccionario.");
             }
         }
-        //TODO: CARGAR EL PRESET PERSONALIZADO AQUI, TAMBIEN EL DE ALTO CONTRASTE
-        string [] aux = {"DMG", "LIGHT", "POCKET", "GREEN", "BROWN", "PASTEL"};
-        ColorPresets.Add("Personalizado", new List<string>(aux));
+        customPresetColors = ConfigManager.Instance.LoadStringList("CustomPreset", 6);
+        ColorPresets.Add("CUSTOM", new List<string>(customPresetColors));
     }
 }

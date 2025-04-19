@@ -4,16 +4,19 @@ using UnityEngine;
 public class Opcion : MonoBehaviour
 {
     public Texto texto;
-
+    protected OptionSound optionSound;
     private void Awake()
     {
         if(texto == null)
             texto = GetComponent<Texto>();
+        optionSound = FindFirstObjectByType<OptionSound>();
     }
 
     public virtual void Accion()
     {
         Debug.Log("Accion principal de la opcion: " + this.gameObject.name);
+        if(optionSound != null)
+            optionSound.PlayEffect();
     }
     public virtual void Derecha()
     {

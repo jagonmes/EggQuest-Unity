@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class NuevaPartida : Opcion
 {
+    [SerializeField]private string nombreEscena;
     public override void Accion()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(nombreEscena);
     }
 }

@@ -36,9 +36,10 @@ public class ConfigManager : MonoBehaviour
     public void LoadPrefs()
     {
         ColorManager.Instance.SelectedColorPreset = PlayerPrefs.GetString("ColorPreset", "DMG");
-        ColorManager.Instance.GridActive = PlayerPrefs.GetInt("Grid", 0) == 1;
-        ColorManager.Instance.GhostingActive = PlayerPrefs.GetInt("Ghosting", 0) == 1;
+        ColorManager.Instance.GridActive = PlayerPrefs.GetInt("Grid", 1) == 1;
+        ColorManager.Instance.GhostingActive = PlayerPrefs.GetInt("Ghosting", 1) == 1;
         ColorManager.Instance.customPresetColors = LoadStringList("CustomPreset", 6);
+        BorderManager.Instance.SelectedBorder = PlayerPrefs.GetString("Border", "DMG");
         SoundManager.Instance.MusicVolume = PlayerPrefs.GetFloat("Music", 1);
         SoundManager.Instance.EffectsVolume = PlayerPrefs.GetFloat("Effects", 1);
         SoundManager.Instance.Muted = PlayerPrefs.GetInt("Muted", 0) == 1;

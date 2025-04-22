@@ -50,7 +50,7 @@ public class OpcionMarco : Opcion
     public void CambiarTexto()
     {
         string aux = "<" + BorderManager.Instance.SelectedBorder + ">"; 
-        string aux2 = "Marco:";
+        string aux2 = textoAMostrar + ":";
         aux2+= new string(' ', texto.caracteresPorLinea - (aux2.Length - 1));
         texto.texto = aux2.Remove(aux2.Length - aux.Length - 1) + aux;
         texto.LoadText();

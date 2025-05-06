@@ -3,6 +3,7 @@ using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class ControladorDeJugador : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class ControladorDeJugador : MonoBehaviour
     public float potenciaDeKnockBack = 50f;
     public bool enKnockBack = false;
     
+    [SerializeField]private GameObject zonaDeDanoEnemigos;
     [SerializeField]private EntradaDelJugador entradaDelJugador;
     [SerializeField]private Vector2 boxSize;
     [SerializeField]private float distanciaDelCentro = 0.0f;
-    [SerializeField]private LayerMask capaSuelo;
+    [SerializeField]private LayerMask capaPlataformas;
     public Animator animator;
     [SerializeField]private SpriteRenderer spriteRenderer;
     [SerializeField]private ControladorVida controladorVida;
@@ -50,7 +52,7 @@ public class ControladorDeJugador : MonoBehaviour
             spSaltar.StopEffect();
             return;
         }
-        if (entradaDelJugador.xAxis != 0 && JugadorEnPlataforma())
+        if (entradaDelJugador.xAxis != 0 && JugadorEnPlataforma() && Time.timeScale != 0)
         {
             if (!spCaminar.playing)
             {
@@ -70,11 +72,18 @@ public class ControladorDeJugador : MonoBehaviour
         cayendo = !jugadorEnPlataforma && rb.linearVelocity.y < 0;
         if (cayendo != _cayendo)
         {
-            if(_cayendo && !cayendoAlVacio)
-                spSaltar.PlayEffect();
+            if (_cayendo)
+            {
+                if(!cayendoAlVacio)
+                    spSaltar.PlayEffect();
+            }
+
             _cayendo = cayendo;
         }
-
+        if(cayendo && !enKnockBack)
+            zonaDeDanoEnemigos.SetActive(true);
+        else
+            zonaDeDanoEnemigos.SetActive(false);
     }
 
     void MoverAlJugador()
@@ -118,7 +127,7 @@ public class ControladorDeJugador : MonoBehaviour
     public bool JugadorEnPlataforma()
     {
         
-        if (Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaSuelo))
+        if (Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaPlataformas))
         {
             if(!cayendoAlVacio)
                 ultimaPosicionEnElSuelo = transform.position;
@@ -140,6 +149,12 @@ public class ControladorDeJugador : MonoBehaviour
         spMorir.PlayEffect();
         SoundManager.Instance.StopMusic();
         StartCoroutine(reiniciarEscena(spMorir.source.length));
+    }
+
+    public void RebotarEnEnemigo()
+    {
+        rb.linearVelocityY = potenciaDeSalto*2/3;
+        spSaltar.PlayEffect();
     }
 
     public void KnockBack(float tiempo, Vector2 collisionPosition)

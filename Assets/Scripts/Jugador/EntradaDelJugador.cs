@@ -60,7 +60,7 @@ public class EntradaDelJugador : MonoBehaviour
 
     private IEnumerator ActivarPlayerInput()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1.5f);
         playerInput.enabled = true;
     }
 }

@@ -30,7 +30,7 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    public void PlayEffect()
+    public virtual void PlayEffect()
     {
         if(!isMusic && audioSource != null && source != null)
         {
@@ -42,7 +42,7 @@ public class SoundPlayer : MonoBehaviour
         }
     }
     
-    public void StopEffect()
+    public virtual void StopEffect()
     {
         if(!isMusic && audioSource != null)
         {

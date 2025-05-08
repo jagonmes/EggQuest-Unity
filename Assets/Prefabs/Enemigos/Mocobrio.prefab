@@ -138,6 +138,7 @@ MonoBehaviour:
   animator: {fileID: 4763040949926825936}
   spMuerte: {fileID: 7615329602767115189}
   spSalto: {fileID: 2821213839744235168}
+  colliderDano: {fileID: 1553008625457511185}
 --- !u!50 &5947388315083186727
 Rigidbody2D:
   serializedVersion: 5

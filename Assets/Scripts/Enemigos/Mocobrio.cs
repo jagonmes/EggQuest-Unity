@@ -7,9 +7,11 @@ public class Mocobrio : Enemigo
     private bool aplastado = false;
     [SerializeField] private SoundPlayer spMuerte;
     [SerializeField] private SoundPlayer spSalto;
+    [SerializeField]private Collider2D colliderDano;
     protected override void Morir()
     {
         base.Morir();
+        colliderDano.enabled = false;
         if (aplastado)
         {
             animator.SetTrigger("Aplastado");
@@ -50,6 +52,14 @@ public class Mocobrio : Enemigo
             else
             {
                 other.GetComponent<ControladorVida>().RecibirDano(other.ClosestPoint(new Vector2(transform.position.x, transform.position.y)));
+            }
+        }
+        if (other.CompareTag("Espada"))
+        {
+            DanarEnemigo();
+            if (vida <= 0)
+            {
+                Morir();
             }
         }
         if (other.CompareTag("Plataformas") || other.CompareTag("Enemy"))

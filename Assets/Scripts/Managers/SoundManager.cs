@@ -82,6 +82,18 @@ public class SoundManager : MonoBehaviour
         music.Play();
     }
     
+    public void ResumeMusic()
+    {
+        if (music.clip != null)
+        {
+            music.mute = Muted;
+            music.volume = MusicVolume;
+            music.Play();
+        }
+
+        
+    }
+    
     public void StopMusic()
     {
         music.Stop();

@@ -64,11 +64,11 @@ public class GranMocobrioJefe : Enemigo
         base.Morir();
         if (aplastado)
         {
-            StartCoroutine(ActivarAnimacionDeMuerte(0.25f, 2f));
+            StartCoroutine(ActivarAnimacionDeMuerte(0.25f, 1.80f));
         }
         else
         {
-            StartCoroutine(ActivarAnimacionDeMuerte(0f, 2f));
+            StartCoroutine(ActivarAnimacionDeMuerte(0f, 1.80f));
         }
     }
 
@@ -77,9 +77,13 @@ public class GranMocobrioJefe : Enemigo
         yield return new WaitForSeconds(t);
         animator.SetTrigger("Muerto");
         spMuerte.PlayEffect();
+        spMuerte.SetLoop(true);
         yield return new WaitForSeconds(t2);
-        Destroy(barrera);
+        if(barrera != null)
+            Destroy(barrera);
         Destroy(gameObject);
+        spMuerte.StopEffect();
+        spMuerte.SetLoop(false);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -113,6 +117,25 @@ public class GranMocobrioJefe : Enemigo
                 other.GetComponent<ControladorVida>().RecibirDano(other.ClosestPoint(new Vector2(transform.position.x, transform.position.y)));
             }
         }
+        if (other.CompareTag("Espada"))
+        {
+            if (!enfadado)
+            {
+                DanarEnemigo();
+                spMuerte.PlayEffect();
+            }
+            if (vida <= 0)
+            {
+                Morir();
+                muerto = true;
+                colliderDano.enabled = false;
+            }
+            else
+            {
+                StartCoroutine(Enfadado());
+            }
+            
+        }
         if (other.CompareTag("Plataformas") || other.CompareTag("Enemy"))
         {
             direccionDeMovimiento = -direccionDeMovimiento;
@@ -140,6 +163,11 @@ public class GranMocobrioJefe : Enemigo
         yield return new WaitForSeconds(0.25f);
         animator.SetBool("Aplastado 0", false);
         aplastado = false;
+        StartCoroutine(Enfadado());
+    }
+    
+    protected IEnumerator Enfadado()
+    {
         animator.SetTrigger("Enfadado");
         enfadado = true;
         yield return new WaitForSeconds(0.75f);
@@ -161,7 +189,6 @@ public class GranMocobrioJefe : Enemigo
     
     private void SaltarHaciaElJugador()
     {
-        
         if (player != null)
         {
             if(player.transform.position.x > this.transform.position.x)

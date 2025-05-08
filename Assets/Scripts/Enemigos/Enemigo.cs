@@ -44,10 +44,22 @@ public class Enemigo : MonoBehaviour
             if (aplastable)
             {
                 DanarEnemigo();
+                if (vida <= 0)
+                {
+                    Morir();
+                }
             }
             else
             {
                 other.GetComponent<ControladorVida>().RecibirDano(other.ClosestPoint(new Vector2(transform.position.x, transform.position.y)));
+            }
+        }
+        if (other.CompareTag("Espada"))
+        {
+            DanarEnemigo();
+            if (vida <= 0)
+            {
+                Morir();
             }
         }
     }

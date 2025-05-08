@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SeguirAlJugador : MonoBehaviour
 {
-    private Transform centroJugador;
+    public Transform centroJugador;
     public bool jugadorEncontrado = false;
     void Start()
     {

@@ -26,6 +26,11 @@ public class ControladorDeJugador : MonoBehaviour
     [SerializeField]private SoundPlayer spCaminar;
     [SerializeField]private SoundPlayer spSaltar;
     [SerializeField]private SoundPlayer spMorir;
+    [SerializeField] private bool puedeAtacar = false;
+    [SerializeField] private bool atacando = false;
+    [SerializeField] private GameObject espada;
+    [SerializeField] private GameObject espadaAbajo;
+    public Transform respawnPoint = null;
     
     private Vector3 ultimaPosicionEnElSuelo = new Vector3(0.0f, 0.0f, 0.0f);
     private bool _cayendo = false;
@@ -148,7 +153,17 @@ public class ControladorDeJugador : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         spMorir.PlayEffect();
         SoundManager.Instance.StopMusic();
-        StartCoroutine(reiniciarEscena(spMorir.source.length));
+        animator.SetBool("MuertoBool", true);
+        if (espada != null && espadaAbajo != null)
+        {
+            espada.SetActive(false);
+            espadaAbajo.SetActive(false);
+        }
+
+        if (respawnPoint != null)
+            StartCoroutine(reiniciarEnPuntoDeRespawn(spMorir.source.length + 0.25f));
+        else
+            StartCoroutine(reiniciarEscena(spMorir.source.length + 0.25f));
     }
 
     public void RebotarEnEnemigo()
@@ -165,6 +180,12 @@ public class ControladorDeJugador : MonoBehaviour
         Vector2 direccion = new Vector2((this.transform.position.x - collisionPosition.x), (this.transform.position.y - collisionPosition.y)).normalized;
         rb.linearVelocity = direccion * potenciaDeKnockBack;
         StartCoroutine(desactivarKnockBack(tiempo));
+        if (espada != null && espadaAbajo != null)
+        {
+            espada.SetActive(false);
+            espadaAbajo.SetActive(false);
+            animator.SetBool("Atacando", false);
+        }
     }
 
     public IEnumerator desactivarKnockBack(float tiempo)
@@ -188,9 +209,76 @@ public class ControladorDeJugador : MonoBehaviour
         }
     }
     
+    public IEnumerator reiniciarEnPuntoDeRespawn(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        transform.position = new Vector3(respawnPoint.position.x, respawnPoint.position.y, this.transform.position.z);
+        animator.SetBool("MuertoBool", false);
+        SoundManager.Instance.ResumeMusic();
+        controladorVida.ReiniciarVida();
+        var BaseCamera = GameObject.Find("Base Camera");
+        BaseCamera.GetComponent<SeguirAlJugador>().jugadorEncontrado = true;
+        enKnockBack = false;
+        cayendoAlVacio = false;
+        atacando = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.linearVelocity = Vector2.zero;
+        animator.SetBool("EnElSuelo", true);
+        animator.SetBool("Muerto", false);
+        animator.SetBool("RecibirDano", false);
+    }
+    
     public IEnumerator reiniciarEscena(float tiempo)
     {
         yield return new WaitForSeconds(tiempo);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Atacar(InputAction.CallbackContext context)
+    {
+        if (!puedeAtacar)
+            return;
+        if (context.started && Time.timeScale != 0 && !enKnockBack && !controladorVida.muerto && !atacando)
+        {
+            animator.SetBool("Atacando", true);
+            if (entradaDelJugador.yAxis >= 0)
+            {
+                animator.SetTrigger("Atacar");
+                espada.SetActive(true);
+                if (spriteRenderer.flipX)
+                {
+                    espada.transform.localPosition = new Vector3(-32,espada.transform.localPosition.y,espada.transform.localPosition.z);
+                    espada.GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else
+                {
+                    espada.transform.localPosition = new Vector3(32,espada.transform.localPosition.y,espada.transform.localPosition.z);
+                    espada.GetComponent<SpriteRenderer>().flipX = false;
+                }
+
+                
+            }
+            else
+            {
+                animator.SetTrigger("AtacarAbajo");
+                espadaAbajo.SetActive(true);
+            }
+            atacando = true;
+            StartCoroutine(dejarDeAtacar(0.25f));
+        }
+
+    }
+    
+    public IEnumerator dejarDeAtacar(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        if (espada != null && espadaAbajo != null)
+        {
+            espada.SetActive(false);
+            espadaAbajo.SetActive(false);
+            animator.SetBool("Atacando", false);
+        }
+        yield return new WaitForSeconds(0.25f);
+        atacando = false;
     }
 }

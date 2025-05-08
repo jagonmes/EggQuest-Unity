@@ -14,12 +14,14 @@ public class ControladorVida : MonoBehaviour
 
     [SerializeField] private ControladorDeJugador controladorDeJugador;
     [SerializeField] private SoundPlayer spRecibirDano;
+    [SerializeField] private bool cargarVidaMaxima = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        vidaActual = vidaMaxima;
+        if(cargarVidaMaxima)
+            vidaActual = vidaMaxima;
     }
 
     // Update is called once per frame

@@ -62,6 +62,7 @@ public class Altar : MonoBehaviour
     private IEnumerator activarHuevoConCapa()
     {
         Jugador.SetActive(false);
+        JugadorCapa.transform.position = Jugador.transform.position;
         HuevoBase.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         HuevoBase.SetActive(false);

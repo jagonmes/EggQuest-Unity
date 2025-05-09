@@ -103,6 +103,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9779b4cd-44db-41fb-9507-fa1ff8352dd4",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonArriba",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1fdd210e-f488-47bf-b328-a219bb1b5c20",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
@@ -115,6 +126,17 @@
                 {
                     "name": "",
                     "id": "7f667eca-d17e-43a9-a17f-9d499d52c0a3",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAbajo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2be3fc9-1241-49a5-a235-cb578ec6e4a4",
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
@@ -147,6 +169,17 @@
                 },
                 {
                     "name": "",
+                    "id": "72d62c26-8a9d-40b1-8715-0a1cd3b18799",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonIzquierda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3244a508-1973-4c97-9da0-881b5f5d8caa",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -169,8 +202,30 @@
                 },
                 {
                     "name": "",
+                    "id": "78318f53-fe08-41a1-9111-2a774755ef4d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonDerecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "58c0c795-abfa-4c26-8707-37f72bdbb532",
                     "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonSaltar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97951f8a-9fc8-4918-96e9-4a0902993491",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -191,6 +246,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d80d6047-8e85-4211-855f-71ef75355654",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAccion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a5f2fc6e-8418-4872-a027-d0623858a848",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
@@ -202,8 +268,30 @@
                 },
                 {
                     "name": "",
+                    "id": "03a3c136-62dd-4af4-9156-2dd5e2e699c4",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonPausa",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "39f072dc-bee4-42a9-9a40-57a7f194d7d5",
                     "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonInventario",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca56690b-95c0-4f88-b7dd-faca503ea685",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

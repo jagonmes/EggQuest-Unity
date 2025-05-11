@@ -19,7 +19,7 @@ public class SiguienteNivel : MonoBehaviour
     {
         cortina.SetActive(true);
         ConfigManager.Instance.SavePrefs("Monedas", UIJugador.Instance.gemasRecolectadas);
-        ConfigManager.Instance.SavePrefs("LastLevel", nombreDelNivel);
+        ConfigManager.Instance.SavePrefs("LastLevel", nombreDelNivel=="Menu Principal" ? "" : nombreDelNivel);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(nombreDelNivel);
     }

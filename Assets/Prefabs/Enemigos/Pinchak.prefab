@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2342176033852346048}
   - component: {fileID: 5478099683202264899}
+  - component: {fileID: 8246553108491067720}
   m_Layer: 8
   m_Name: ZonaDano
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2342176033852346048
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -93,6 +94,18 @@ PolygonCollider2D:
       - {x: 3.7564864, y: -15.886461}
       - {x: 13.716285, y: -9.52294}
   m_UseDelaunayMesh: 0
+--- !u!114 &8246553108491067720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291339295451552796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20f3540e25722b4090857abb210a817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7958473186727852809
 GameObject:
   m_ObjectHideFlags: 0

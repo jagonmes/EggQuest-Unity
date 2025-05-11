@@ -26,6 +26,7 @@ public class ControladorDeJugador : MonoBehaviour
     [SerializeField]private SoundPlayer spCaminar;
     [SerializeField]private SoundPlayer spSaltar;
     [SerializeField]private SoundPlayer spMorir;
+    [SerializeField]private SoundPlayer spRebotar;
     [SerializeField] private bool puedeAtacar = false;
     [SerializeField] private bool atacando = false;
     [SerializeField] private GameObject espada;
@@ -293,9 +294,11 @@ public class ControladorDeJugador : MonoBehaviour
             rb.linearVelocityX = -potenciaDeKnockBack/2;
         enKnockBack = true;
         StartCoroutine(desactivarKnockBack(0.125f));
+        spRebotar.PlayEffect();
     }
     public void ReboteEspadaVertical()
     {
         rb.linearVelocityY = potenciaDeSalto;
+        spRebotar.PlayEffect();
     }
 }

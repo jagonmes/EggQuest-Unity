@@ -5,7 +5,8 @@ public class Destructible : MonoBehaviour
 {
     [SerializeField] protected GameObject explosionPrefab;
     [SerializeField] protected SpriteRenderer spriteRenderer;
-    [SerializeField] protected Collider2D[] collider2D;
+    [SerializeField] protected new Collider2D[] collider2D;
+    [SerializeField] protected SoundPlayer sp;
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Espada"))
@@ -18,6 +19,7 @@ public class Destructible : MonoBehaviour
     {
         if(explosionPrefab != null)
             explosionPrefab.SetActive(true);
+        sp.PlayEffect();
         spriteRenderer.enabled = false;
         foreach (Collider2D col in collider2D)
         {

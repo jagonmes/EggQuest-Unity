@@ -8,7 +8,7 @@ public class ReboteEspada : MonoBehaviour
     private void Start()
     {
         if (_controladorDeJugador == null)
-            _controladorDeJugador = FindObjectOfType<ControladorDeJugador>();
+            _controladorDeJugador = FindFirstObjectByType<ControladorDeJugador>();
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

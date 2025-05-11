@@ -18,6 +18,12 @@ private void Awake()
         textoGemas = GetComponent<Texto>();
 }
 
+private void Start()
+{
+    gemasRecolectadas = PlayerPrefs.GetInt("Monedas", 0);
+    ActualizarGemasEnUI();
+}
+
 public void ActualizarVidas(int vidaActual, int vidaMaxima)
 {
     for (int i = 0; i < vidas.Length; i++)

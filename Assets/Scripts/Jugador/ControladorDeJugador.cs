@@ -118,6 +118,8 @@ public class ControladorDeJugador : MonoBehaviour
 
     private void FlipSprites()
     {
+        if (atacando)
+            return;
         if(rb.linearVelocityX < 0)
             spriteRenderer.flipX = true;
         else if(rb.linearVelocityX > 0)
@@ -131,9 +133,11 @@ public class ControladorDeJugador : MonoBehaviour
 
     public bool JugadorEnPlataforma()
     {
-        
-        if (Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaPlataformas))
+        RaycastHit2D other = Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaPlataformas);  
+        if (other)
         {
+            if(other.collider.excludeLayers == LayerMask.GetMask("Jugador"))
+                return false;
             if(!cayendoAlVacio)
                 ultimaPosicionEnElSuelo = transform.position;
             return true;
@@ -241,7 +245,7 @@ public class ControladorDeJugador : MonoBehaviour
         if (context.started && Time.timeScale != 0 && !enKnockBack && !controladorVida.muerto && !atacando)
         {
             animator.SetBool("Atacando", true);
-            if (entradaDelJugador.yAxis >= 0)
+            if (entradaDelJugador.yAxis >= 0 || (entradaDelJugador.yAxis < 0 && JugadorEnPlataforma()))
             {
                 animator.SetTrigger("Atacar");
                 espada.SetActive(true);
@@ -258,7 +262,7 @@ public class ControladorDeJugador : MonoBehaviour
 
                 
             }
-            else
+            else if(!JugadorEnPlataforma())
             {
                 animator.SetTrigger("AtacarAbajo");
                 espadaAbajo.SetActive(true);
@@ -280,5 +284,20 @@ public class ControladorDeJugador : MonoBehaviour
         }
         yield return new WaitForSeconds(0.25f);
         atacando = false;
+    }
+    
+    public void ReboteEspada(Vector2 collisionPosition)
+    {
+        Vector2 direccion = new Vector2((this.transform.position.x - collisionPosition.x), (this.transform.position.y - collisionPosition.y)).normalized;
+        if(direccion.x >= 0)
+            rb.linearVelocityX = potenciaDeKnockBack/2;
+        else
+            rb.linearVelocityX = -potenciaDeKnockBack/2;
+        enKnockBack = true;
+        StartCoroutine(desactivarKnockBack(0.125f));
+    }
+    public void ReboteEspadaVertical()
+    {
+        rb.linearVelocityY = potenciaDeSalto;
     }
 }

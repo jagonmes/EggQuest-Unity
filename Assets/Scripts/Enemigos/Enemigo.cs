@@ -10,7 +10,7 @@ public class Enemigo : MonoBehaviour
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator animator;
 
-    protected void Start()
+    protected virtual void Start()
     {
         if(rb == null)
             rb = GetComponent<Rigidbody2D>();

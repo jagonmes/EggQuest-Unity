@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 119093803706846716}
   - component: {fileID: 3545759608319460218}
   - component: {fileID: 6991923250139145878}
+  - component: {fileID: 1267606611396392066}
   m_Layer: 8
   m_Name: Pinchos
   m_TagString: Enemy
@@ -154,3 +155,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20f3540e25722b4090857abb210a817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1267606611396392066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6398803793887192411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae86ed162c1298449886167e15b8644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controladorDeJugador: {fileID: 0}
+  reboteHotizontal: 1

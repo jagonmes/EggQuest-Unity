@@ -18,6 +18,8 @@ public class SiguienteNivel : MonoBehaviour
     private IEnumerator CargarSiguienteNivel()
     {
         cortina.SetActive(true);
+        ConfigManager.Instance.SavePrefs("Monedas", UIJugador.Instance.gemasRecolectadas);
+        ConfigManager.Instance.SavePrefs("LastLevel", nombreDelNivel);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(nombreDelNivel);
     }

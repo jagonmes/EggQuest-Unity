@@ -122,6 +122,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: AtacarAbajo
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: EnElSuelo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7000351270138605281}
   m_Solo: 0
@@ -639,7 +642,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnElSuelo
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: VelocidadDeMovimiento
+    m_ConditionEvent: VelocidadVertical
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5801839089057554981}
@@ -742,7 +745,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnElSuelo
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: VelocidadDeMovimiento
+    m_ConditionEvent: VelocidadVertical
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 367402850089304726}
@@ -828,7 +831,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnElSuelo
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: VelocidadDeMovimiento
+    m_ConditionEvent: VelocidadVertical
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 367402850089304726}

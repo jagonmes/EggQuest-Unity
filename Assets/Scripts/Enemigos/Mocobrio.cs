@@ -62,7 +62,7 @@ public class Mocobrio : Enemigo
                 Morir();
             }
         }
-        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy") || other.CompareTag("EnemieStopper"))
         {
             direccionDeMovimiento = -direccionDeMovimiento;
         }

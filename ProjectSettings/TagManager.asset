@@ -8,6 +8,7 @@ TagManager:
   - Plataformas
   - DanoAEnemigos
   - Espada
+  - EnemieStopper
   layers:
   - Default
   - TransparentFX

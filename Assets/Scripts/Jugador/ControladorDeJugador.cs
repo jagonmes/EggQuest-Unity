@@ -136,8 +136,6 @@ public class ControladorDeJugador : MonoBehaviour
         RaycastHit2D other = Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaPlataformas);  
         if (other)
         {
-            if(other.collider.excludeLayers == LayerMask.GetMask("Jugador"))
-                return false;
             if(!cayendoAlVacio)
                 ultimaPosicionEnElSuelo = transform.position;
             return true;

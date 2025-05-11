@@ -39,7 +39,7 @@ public class Pinchak : Enemigo
                 }
             }
         }
-        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy")  || other.CompareTag("EnemieStopper"))
         {
             direccionDeMovimiento = -direccionDeMovimiento;
             if(direccionDeMovimiento > 0)

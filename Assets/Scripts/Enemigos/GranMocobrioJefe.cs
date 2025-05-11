@@ -136,7 +136,7 @@ public class GranMocobrioJefe : Enemigo
             }
             
         }
-        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Plataformas") || other.CompareTag("Enemy")  || other.CompareTag("EnemieStopper"))
         {
             direccionDeMovimiento = -direccionDeMovimiento;
         }

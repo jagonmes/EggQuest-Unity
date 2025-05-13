@@ -135,11 +135,13 @@ public class ControladorDeJugador : MonoBehaviour
     public bool JugadorEnPlataforma()
     {
         RaycastHit2D other = Physics2D.BoxCast(transform.position, boxSize, 0f, -transform.up, distanciaDelCentro, capaPlataformas);  
-        if (other)
+        if (other && Mathf.Abs(rb.linearVelocityY) < 0.3f)
         {
-            if(!cayendoAlVacio)
-                ultimaPosicionEnElSuelo = transform.position;
-            return true;
+
+                if(!cayendoAlVacio)
+                    ultimaPosicionEnElSuelo = transform.position;
+                return true;
+
         }
         else
             return false;
@@ -244,27 +246,29 @@ public class ControladorDeJugador : MonoBehaviour
         if (context.started && Time.timeScale != 0 && !enKnockBack && !controladorVida.muerto && !atacando)
         {
             animator.SetBool("Atacando", true);
-            if (entradaDelJugador.yAxis >= 0 || (entradaDelJugador.yAxis < 0 && JugadorEnPlataforma()))
+            if(entradaDelJugador.yAxis < 0  && Mathf.Abs(rb.linearVelocity.y) > 0.1f)
+            {
+                animator.SetTrigger("AtacarAbajo");
+                animator.Play("Atacar Abajo");
+                espadaAbajo.SetActive(true);
+            }
+            else
             {
                 animator.SetTrigger("Atacar");
                 espada.SetActive(true);
                 if (spriteRenderer.flipX)
                 {
                     espada.transform.localPosition = new Vector3(-32,espada.transform.localPosition.y,espada.transform.localPosition.z);
+                    espada.GetComponent<BoxCollider2D>().offset = new Vector2(10, 0);
                     espada.GetComponent<SpriteRenderer>().flipX = true;
                 }
                 else
                 {
                     espada.transform.localPosition = new Vector3(32,espada.transform.localPosition.y,espada.transform.localPosition.z);
+                    espada.GetComponent<BoxCollider2D>().offset = new Vector2(-10, 0);
                     espada.GetComponent<SpriteRenderer>().flipX = false;
                 }
 
-                
-            }
-            else if(!JugadorEnPlataforma())
-            {
-                animator.SetTrigger("AtacarAbajo");
-                espadaAbajo.SetActive(true);
             }
             atacando = true;
             StartCoroutine(dejarDeAtacar(0.25f));
@@ -300,5 +304,16 @@ public class ControladorDeJugador : MonoBehaviour
     {
         rb.linearVelocityY = potenciaDeSalto;
         spRebotar.PlayEffect();
+    }
+    
+    private bool aproximar(float a, float b, float rango)
+    {
+        if(b + rango > a && b - rango < a)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }

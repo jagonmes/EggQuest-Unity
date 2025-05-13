@@ -17,6 +17,7 @@ public class GranPinchak : Enemigo
     [SerializeField]private Transform spriteTransform;
     public ReboteEspada reboteEspada;
     [SerializeField]private Transform jugador;
+    public float distanciaAJugador = 0.0f;
     
     
     protected override void Move()
@@ -109,7 +110,9 @@ public class GranPinchak : Enemigo
         if (!enfadado && !atacando && !aturdido)
         {
             int random = Random.Range(0, 100);
-            if (random < 50)
+            distanciaAJugador = Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
+                new Vector2(this.transform.position.x, this.transform.position.y));
+            if (random < 50 || distanciaAJugador  > 200f)
                 StartCoroutine(IntentarAtacar());
             else
                 StartCoroutine(Enfadarse());
@@ -160,7 +163,7 @@ public class GranPinchak : Enemigo
     
     public void KnockBack()
     {
-        rb.linearVelocity = direccionDeMovimiento * 150 * new Vector2(0.5f,0.5f) ;
+        rb.linearVelocity = 150 * new Vector2(0.5f * direccionDeMovimiento,0.5f) ;
         StartCoroutine(desactivarKnockBack());
     }
     

@@ -7,11 +7,28 @@ public class Destructible : MonoBehaviour
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected new Collider2D[] collider2D;
     [SerializeField] protected SoundPlayer sp;
+    private bool destruido = false;
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Espada"))
         {
-            StartCoroutine(destruir());
+            if (!destruido)
+            {
+                StartCoroutine(destruir());
+                destruido = true;
+            }
+        }
+    }
+    
+    public virtual void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Espada"))
+        {
+            if (!destruido)
+            {
+                StartCoroutine(destruir());
+                destruido = true;
+            }
         }
     }
     

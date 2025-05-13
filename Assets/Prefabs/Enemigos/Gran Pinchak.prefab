@@ -121,13 +121,13 @@ GameObject:
   - component: {fileID: 423496512227004456}
   - component: {fileID: 6122216975400104414}
   - component: {fileID: 8757626877371490615}
-  - component: {fileID: 6515112438713374380}
   - component: {fileID: 2755872646998488059}
   - component: {fileID: 3660330493560992755}
   - component: {fileID: 2146329735722492780}
   - component: {fileID: 1035676542986614855}
   - component: {fileID: 5307788465586377894}
   - component: {fileID: 2821845338262984704}
+  - component: {fileID: 2720030595485476786}
   m_Layer: 8
   m_Name: Gran Pinchak
   m_TagString: Untagged
@@ -214,42 +214,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.55350304, y: -1.2639198}
   m_Radius: 15.003002
---- !u!58 &6515112438713374380
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7563610187612753018}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.21090698, y: 1.0179043}
-  m_Radius: 16.579641
 --- !u!114 &2755872646998488059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,9 +252,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -385,7 +349,7 @@ MonoBehaviour:
   atacando: 0
   enfadado: 0
   muerto: 0
-  colliderDano: {fileID: 6515112438713374380}
+  colliderDano: {fileID: 2720030595485476786}
   spMuerte: {fileID: 2755872646998488059}
   spReboteEnemigo: {fileID: 5307788465586377894}
   player: {fileID: 0}
@@ -446,9 +410,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -521,3 +485,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &2720030595485476786
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563610187612753018}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 33.24201, y: 26.91895}
+  m_Direction: 1

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -7,10 +8,11 @@ public class AsignarACapa : MonoBehaviour
 {
     public Material sprite2D_Profundidad;
     public List<GameObject> Layers = new List<GameObject>();
+    public bool active = true;
 
     private void Awake()
     {
-        if(Application.isPlaying)
+        if(Application.isPlaying && true)
             AsignarACapaDeColor();
     }
 

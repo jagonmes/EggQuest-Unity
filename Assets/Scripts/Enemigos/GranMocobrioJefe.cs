@@ -92,7 +92,7 @@ public class GranMocobrioJefe : Enemigo
         {
             if (aplastable && !muerto)
             {
-                if (!enfadado)
+                if (!enfadado && !atacando)
                 {
                     DanarEnemigo();
                     aplastado = true;
@@ -130,7 +130,7 @@ public class GranMocobrioJefe : Enemigo
                 muerto = true;
                 colliderDano.enabled = false;
             }
-            else
+            else if(!enfadado && !atacando)
             {
                 StartCoroutine(Enfadado());
             }
@@ -168,15 +168,18 @@ public class GranMocobrioJefe : Enemigo
     
     protected IEnumerator Enfadado()
     {
-        animator.SetTrigger("Enfadado");
-        enfadado = true;
-        yield return new WaitForSeconds(0.75f);
-        StartCoroutine(Atacar());
+        if (!enfadado && !atacando)
+        {
+            animator.SetTrigger("Enfadado");
+            enfadado = true;
+            yield return new WaitForSeconds(0.75f);
+            StartCoroutine(Atacar());
+        }
     }
     
     protected IEnumerator Atacar()
     {
-        if (!atacando)
+        if (!atacando && enfadado)
         {
             animator.SetTrigger("Atacando");
             SaltarHaciaElJugador();

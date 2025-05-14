@@ -6,12 +6,16 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] public AudioClip source;
     [SerializeField] private AudioSource audioSource;
     public bool playing = false;
+    public bool stopMusic = false;
     
     private void Start()
     {
         if (isMusic)
         {
-            SoundManager.Instance.PlayMusic(source);
+            if(source != null)
+                SoundManager.Instance.PlayMusic(source);
+            if(stopMusic)
+                SoundManager.Instance.StopMusic();
         }
         else
         {

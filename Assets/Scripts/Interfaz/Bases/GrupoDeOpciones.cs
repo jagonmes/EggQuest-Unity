@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class GrupoDeOpciones : MonoBehaviour
 {
     [SerializeField]protected List<Opcion> opciones = new List<Opcion>();
-    [SerializeField]private GameObject flecha;
-    [SerializeField]private PlayerInput playerInput;
+    [SerializeField]protected GameObject flecha;
+    [SerializeField]protected PlayerInput playerInput;
     protected int opcionSeleccionada = 0;
     protected OptionSound optionSound;
-    void Start()
+    protected virtual void Start()
     {
         playerInput.enabled = true;
         optionSound = FindFirstObjectByType<OptionSound>();

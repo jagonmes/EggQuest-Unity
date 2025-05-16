@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6904870428129046536}
   velocidadDeMovimiento: 85
-  potenciaDeSalto: 141
+  potenciaDeSalto: 145
   potenciaDeKnockBack: 85
   enKnockBack: 0
   zonaDeDanoEnemigos: {fileID: 5080255076873656243}
@@ -285,6 +285,14 @@ MonoBehaviour:
   spCaminar: {fileID: 3727746330419622294}
   spSaltar: {fileID: 7112320916897609265}
   spMorir: {fileID: 2057313855721630783}
+  spRebotar: {fileID: 0}
+  puedeAtacar: 0
+  atacando: 0
+  espada: {fileID: 0}
+  espadaAbajo: {fileID: 0}
+  respawnPoint: {fileID: 0}
+  _jumpTimer: 0.2
+  jumpTimer: 0
 --- !u!114 &3672223739229765962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +313,7 @@ MonoBehaviour:
   muerto: 0
   controladorDeJugador: {fileID: 6819044066699791583}
   spRecibirDano: {fileID: 8617830654140742958}
+  cargarVidaMaxima: 1
 --- !u!114 &1586357424449679111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +535,7 @@ MonoBehaviour:
   source: {fileID: 8300000, guid: ac9a5ce487f572044af0aefde39f606e, type: 3}
   audioSource: {fileID: 717252533559265741}
   playing: 0
+  stopMusic: 0
 --- !u!82 &717252533559265741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -639,6 +649,7 @@ MonoBehaviour:
   source: {fileID: 8300000, guid: 7844039ad792e424b88271c6377c85ee, type: 3}
   audioSource: {fileID: 6635050066711139919}
   playing: 0
+  stopMusic: 0
 --- !u!82 &6635050066711139919
 AudioSource:
   m_ObjectHideFlags: 0
@@ -752,6 +763,7 @@ MonoBehaviour:
   source: {fileID: 8300000, guid: 64cef0944028c404abe8320976737a91, type: 3}
   audioSource: {fileID: 7321722666864202923}
   playing: 0
+  stopMusic: 0
 --- !u!82 &7321722666864202923
 AudioSource:
   m_ObjectHideFlags: 0
@@ -865,6 +877,7 @@ MonoBehaviour:
   source: {fileID: 8300000, guid: e67dcd3190d7dc542b537b02f88ee3ae, type: 3}
   audioSource: {fileID: 232107786215946381}
   playing: 0
+  stopMusic: 0
 --- !u!82 &232107786215946381
 AudioSource:
   m_ObjectHideFlags: 0

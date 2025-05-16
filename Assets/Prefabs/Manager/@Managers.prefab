@@ -318,12 +318,12 @@ MonoBehaviour:
   GridActive: 0
   GhostingActive: 0
   customPresetColors:
-  - DMG
-  - DMG
-  - DMG
-  - DMG
-  - DMG
-  - DMG
+  - GREEN
+  - BROWN
+  - POCKET
+  - LIGHT
+  - BROWN
+  - GREEN
 --- !u!114 &198233412103381577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,17 +352,25 @@ MonoBehaviour:
   BorderNames:
   - DMG
   - EGG
+  - MOC
+  - PIN
   - BLACK
   Sprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 990aca137fb7f304b8fb3fb3480fbcfa, type: 3}
+  - {fileID: 21300000, guid: b17b860663b3b7b40a5e366a8f830431, type: 3}
+  - {fileID: 21300000, guid: 04f64176fb978374e9bd50d7362c2ce8, type: 3}
+  - {fileID: 21300000, guid: 08190fab4f19b87499d9c0f36e7356f1, type: 3}
   - {fileID: 0}
   BGColors:
   - {r: 0.7686275, g: 0.74509805, b: 0.73333335, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   FGColors:
   - {r: 0.40784317, g: 0.40784317, b: 0.40784317, a: 1}
+  - {r: 0.40784314, g: 0.40784314, b: 0.40784314, a: 1}
+  - {r: 0.40784314, g: 0.40784314, b: 0.40784314, a: 1}
   - {r: 0.40784314, g: 0.40784314, b: 0.40784314, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
 --- !u!82 &4041423976040985488

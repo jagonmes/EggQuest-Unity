@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics.Geometry;
 using UnityEngine;
@@ -37,7 +38,8 @@ public class ControladorDeJugador : MonoBehaviour
     private bool _cayendo = false;
     private bool cayendo = false;
     private bool cayendoAlVacio = false;
-
+    [SerializeField]private float _jumpTimer = 0.2f;
+    [SerializeField]private float jumpTimer = 0.0f;
 
     // Update is called once per frame
     void Update()
@@ -48,6 +50,10 @@ public class ControladorDeJugador : MonoBehaviour
         MoverAlJugador();
         SetAnimatorParams();
         FlipSprites();
+        if(!JugadorEnPlataforma())
+            jumpTimer -= Time.deltaTime;
+        else
+            jumpTimer = _jumpTimer;
     }
 
     void SoundPlayers()
@@ -102,7 +108,7 @@ public class ControladorDeJugador : MonoBehaviour
     
     public virtual void Saltar(InputAction.CallbackContext context)
     {
-        if (context.started && JugadorEnPlataforma() && Time.timeScale != 0 && !enKnockBack && !controladorVida.muerto)
+        if (context.started && (JugadorEnPlataforma() || jumpTimer > 0) && Time.timeScale != 0 && !enKnockBack && !controladorVida.muerto)
         {
             rb.linearVelocityY = potenciaDeSalto;
             spSaltar.PlayEffect();
@@ -140,6 +146,7 @@ public class ControladorDeJugador : MonoBehaviour
 
                 if(!cayendoAlVacio)
                     ultimaPosicionEnElSuelo = transform.position;
+                jumpTimer = _jumpTimer;
                 return true;
 
         }

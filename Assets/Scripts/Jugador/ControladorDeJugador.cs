@@ -40,6 +40,7 @@ public class ControladorDeJugador : MonoBehaviour
     private bool cayendoAlVacio = false;
     [SerializeField]private float _jumpTimer = 0.2f;
     [SerializeField]private float jumpTimer = 0.0f;
+    object lockJumpTimer = new object();
 
     // Update is called once per frame
     void Update()
@@ -50,10 +51,14 @@ public class ControladorDeJugador : MonoBehaviour
         MoverAlJugador();
         SetAnimatorParams();
         FlipSprites();
-        if(!JugadorEnPlataforma())
-            jumpTimer -= Time.deltaTime;
-        else
-            jumpTimer = _jumpTimer;
+
+        lock (lockJumpTimer)
+        {
+            if(!JugadorEnPlataforma())
+                jumpTimer -= Time.deltaTime;
+            else
+                jumpTimer = _jumpTimer;
+        }
     }
 
     void SoundPlayers()
@@ -112,6 +117,10 @@ public class ControladorDeJugador : MonoBehaviour
         {
             rb.linearVelocityY = potenciaDeSalto;
             spSaltar.PlayEffect();
+            lock (lockJumpTimer)
+            {
+                jumpTimer = -1;
+            }
         }
     }
 
